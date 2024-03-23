@@ -1,0 +1,7 @@
+# Project files
+node_modules
+dist
+
+# Dotfiles
+.DS_Store
+.env*

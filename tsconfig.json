@@ -1,0 +1,17 @@
+{
+  // Source code in ./backend, compiled js in ./dist
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "rootDir": "backend",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "sourceMap": true
+  },
+  "include": ["backend/*"],
+  "exclude": ["node_modules", ".vscode"]
+}
