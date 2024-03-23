@@ -11,8 +11,10 @@ router
   .route(`${BASE_URL}/staff`)
   .get(staffController.getAllStaff)
   .post(staffController.createStaff)
+router
+  .route(`${BASE_URL}/staff/:id`)
+  .get(staffController.getOneStaff)
   .patch(staffController.updateStaff)
-router.get(`${BASE_URL}/staff/:id`, staffController.getOneStaff)
 
 // Paint routes
 router.get(`${BASE_URL}/paints/:color`, paintController.getSumByColor)
@@ -24,4 +26,7 @@ router
 // Status routes
 router.get(`${BASE_URL}/status`, statusController.getAllStatus)
 router.patch(`${BASE_URL}/status/:color`, statusController.updateStatus)
+
+// Null route
+router.all('*', (_, res) => res.status(404).send('Invalid route.'))
 export default router

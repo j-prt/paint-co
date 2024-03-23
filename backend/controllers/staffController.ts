@@ -23,11 +23,10 @@ export async function getOneStaffDb(id: number) {
     .executeTakeFirst()
 }
 
-export async function updateStaffDb(staff: StaffUpdate) {
-  const { id, ...values } = staff
-  if (id) {
-    await db.updateTable('staff').set(values).where('id', '=', id).execute()
-  } else throw new Error('ID must be included to update.')
+export async function updateStaffDb(id: number, staff: StaffUpdate) {
+  // Prevent changing ID
+  const updateData = { ...staff, id }
+  await db.updateTable('staff').set(updateData).where('id', '=', id).execute()
 }
 
 // Functions for use in routes
@@ -98,11 +97,12 @@ export async function getOneStaff(req: Request, res: Response) {
 // PATCH
 export async function updateStaff(req: Request, res: Response) {
   const staff: StaffUpdate = req.body
+  const id = Number(req.params.id)
   let error = false
   let result: unknown
 
   try {
-    result = await updateStaffDb(staff)
+    result = await updateStaffDb(id, staff)
   } catch (err) {
     console.error(err)
     error = true
