@@ -22,4 +22,6 @@ router
   .post(paintController.createPaintUse)
 
 // Status routes
+router.get(`${BASE_URL}/status`, statusController.getAllStatus)
+router.patch(`${BASE_URL}/status/:color`, statusController.updateStatus)
 export default router

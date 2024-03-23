@@ -1,9 +1,9 @@
 import { sql } from 'kysely'
 import { db } from '../database'
 
-import { createPaintUse } from '../controllers/paintController'
+import { createPaintUseDb } from '../controllers/paintController'
 import { createStaffDb } from '../controllers/staffController'
-import { createStatus } from '../controllers/statusController'
+import { createStatusDb } from '../controllers/statusController'
 import * as data from './startingValues'
 
 const init = async () => {
@@ -61,7 +61,7 @@ const init = async () => {
 
   data.PAINTS.forEach(paint =>
     // @ts-expect-error
-    results.push(createPaintUse(paint))
+    results.push(createPaintUseDb(paint))
   )
 
   // @ts-expect-error
@@ -69,7 +69,7 @@ const init = async () => {
 
   data.STATUS.forEach(status =>
     // @ts-expect-error
-    results.push(createStatus(status))
+    results.push(createStatusDb(status))
   )
 
   const all = await Promise.all(results)
