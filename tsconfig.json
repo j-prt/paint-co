@@ -12,6 +12,6 @@
     "noImplicitAny": true,
     "sourceMap": true
   },
-  "include": ["backend/*"],
+  "include": ["backend/**/*"],
   "exclude": ["node_modules", ".vscode"]
 }

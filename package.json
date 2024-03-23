@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
+    "setup": "node dist/setup/initdb.js",
     "start": "node dist/server.js"
   },
   "author": "",
