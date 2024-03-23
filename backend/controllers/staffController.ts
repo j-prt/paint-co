@@ -3,7 +3,6 @@ import { NewStaff, StaffUpdate } from '../models'
 import { Response, Request } from 'express'
 
 // Functions for interacting directly with the database
-
 export async function createStaffDb(staff: NewStaff) {
   return await db
     .insertInto('staff')
@@ -31,12 +30,30 @@ export async function updateStaffDb(staff: StaffUpdate) {
   } else throw new Error('ID must be included to update.')
 }
 
-// Functions to use in routes
+// Functions for use in routes
+// Each function has basic error handling, returning
+// a 500 or 404 depending on the results of the DB query.
+
+// GET
 export async function getAllStaff(req: Request, res: Response) {
-  const staff = await getAllStaffDb()
-  res.status(200).json(staff)
+  let error = false
+  let result: unknown
+
+  try {
+    result = await getAllStaffDb()
+  } catch (err) {
+    console.error(err)
+    error = true
+  }
+
+  if (error) {
+    res.status(500).send('Error occurred.')
+  } else {
+    res.status(200).json(result)
+  }
 }
 
+// POST
 export async function createStaff(req: Request, res: Response) {
   const staff: NewStaff = req.body
   let error = false
@@ -56,6 +73,7 @@ export async function createStaff(req: Request, res: Response) {
   }
 }
 
+// GET
 export async function getOneStaff(req: Request, res: Response) {
   const id = Number(req.params.id)
   let error = false
@@ -77,6 +95,7 @@ export async function getOneStaff(req: Request, res: Response) {
   }
 }
 
+// PATCH
 export async function updateStaff(req: Request, res: Response) {
   const staff: StaffUpdate = req.body
   let error = false

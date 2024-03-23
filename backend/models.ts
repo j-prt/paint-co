@@ -1,4 +1,5 @@
 import { Generated, Insertable, Selectable, Updateable } from 'kysely'
+import { ValidColor, ValidRole, ValidStatus } from './types'
 
 // Columns designated as 'Generated' types will not be
 // required when passing data for insertions
@@ -15,14 +16,14 @@ export interface StaffTable {
   id: Generated<number>
   name: string
   password: string
-  role: 'painter' | 'manager' | 'orderer' | 'admin'
+  role: ValidRole
 }
 
 // This is a transactional table for holding paint use records
 // it is append-only, and designed for easy history lookups
 export interface PaintTable {
   id: Generated<number>
-  color: 'blue' | 'grey' | 'black' | 'white' | 'purple'
+  color: ValidColor
   changeAmount: number
   changedBy: number // ID of the user who made the change
   changedAt: Date
@@ -31,8 +32,8 @@ export interface PaintTable {
 // Primarily this table will be interacted with via UPDATE
 export interface StatusTable {
   id: Generated<number>
-  color: 'blue' | 'grey' | 'black' | 'white' | 'purple'
-  status: 'available' | 'low' | 'out'
+  color: ValidColor
+  status: ValidStatus
 }
 
 export type Staff = Selectable<StaffTable>
