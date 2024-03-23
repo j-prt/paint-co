@@ -2,7 +2,7 @@ import { sql } from 'kysely'
 import { db } from '../database'
 
 import { createPaintUse } from '../controllers/paintController'
-import { createStaff } from '../controllers/staffController'
+import { createStaffDb } from '../controllers/staffController'
 import { createStatus } from '../controllers/statusController'
 import * as data from './startingValues'
 
@@ -65,7 +65,7 @@ const init = async () => {
   )
 
   // @ts-expect-error
-  data.STAFF.forEach(staff => results.push(createStaff(staff)))
+  data.STAFF.forEach(staff => results.push(createStaffDb(staff)))
 
   data.STATUS.forEach(status =>
     // @ts-expect-error
