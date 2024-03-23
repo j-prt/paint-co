@@ -1,6 +1,7 @@
 import { Generated, Insertable, Selectable, Updateable } from 'kysely'
 
-// Columns designated as 'Generated' types will not be required when passing data for insertions
+// Columns designated as 'Generated' types will not be
+// required when passing data for insertions
 
 export interface Database {
   staff: StaffTable
@@ -8,6 +9,8 @@ export interface Database {
   status: StatusTable
 }
 
+// Table for users of the platform - permissions will be based on their role.
+// Only admins will have write permission
 export interface StaffTable {
   id: Generated<number>
   name: string
@@ -15,6 +18,8 @@ export interface StaffTable {
   role: 'painter' | 'manager' | 'orderer' | 'admin'
 }
 
+// This is a transactional table for holding paint use records
+// it is append-only, and designed for easy history lookups
 export interface PaintTable {
   id: Generated<number>
   color: 'blue' | 'grey' | 'black' | 'white' | 'purple'
@@ -23,6 +28,7 @@ export interface PaintTable {
   changedAt: Date
 }
 
+// Primarily this table will be interacted with via UPDATE
 export interface StatusTable {
   id: Generated<number>
   color: 'blue' | 'grey' | 'black' | 'white' | 'purple'
