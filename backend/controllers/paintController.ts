@@ -10,6 +10,14 @@ export async function getSumByColor(color: PaintTable['color']) {
     .execute()
 }
 
+export async function getAllSumsByColor() {
+  return await db
+    .selectFrom('paintUse')
+    .groupBy('color')
+    .select([sql`sum(changeAmount)`.as('totalUse'), 'color'])
+    .execute()
+}
+
 export async function createPaintUse(paintUse: NewPaintUse) {
   return await db
     .insertInto('paintUse')
@@ -18,5 +26,5 @@ export async function createPaintUse(paintUse: NewPaintUse) {
     .executeTakeFirstOrThrow()
 }
 
-// TODO: all paint use, to see history.
-// Filter by ID would be interesting too.
+// TODO: all paint use (table scan), to see history.
+// Filter by ID/Date range would be interesting too.

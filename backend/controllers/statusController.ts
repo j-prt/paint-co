@@ -9,6 +9,10 @@ export async function createStatus(status: NewStatus) {
     .executeTakeFirstOrThrow()
 }
 
+export async function getAllStatus() {
+  return await db.selectFrom('status').selectAll().execute()
+}
+
 export async function updateStaff(status: StatusUpdate) {
   const { id, ...values } = status
   if (id) {
