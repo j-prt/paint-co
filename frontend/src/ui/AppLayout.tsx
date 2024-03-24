@@ -3,14 +3,22 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import FlexRow from './FlexRow'
 
-const AppLayoutStyle = styled(FlexRow)``
+const OutletBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: var(--color-secondary);
+`
 
 function AppLayout() {
   return (
-    <AppLayoutStyle>
+    <FlexRow>
       <Sidebar />
-      <Outlet />
-    </AppLayoutStyle>
+      <OutletBox>
+        <Outlet />
+      </OutletBox>
+    </FlexRow>
   )
 }
 
