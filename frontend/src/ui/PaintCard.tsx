@@ -2,6 +2,9 @@ import styled from 'styled-components'
 import FlexColumn from './FlexColumn'
 import ButtonBox from './ButtonBox'
 import Button from './Button'
+import { useState } from 'react'
+import Modal from './Modal'
+import UpdateLevel from './UpdateLevel'
 
 const PaintCardStyle = styled(FlexColumn)`
   padding: 1.5rem;
@@ -20,6 +23,8 @@ const PaintMeter = styled.div`
 `
 
 function PaintCard() {
+  const [isUpdatingLevel, setIsUpdatingLevel] = useState<boolean>(false)
+  const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false)
   return (
     <PaintCardStyle>
       <p>Color</p>
@@ -30,9 +35,19 @@ function PaintCard() {
         Available
       </p>
       <ButtonBox>
-        <Button>Update Level</Button>
-        <Button>Update Status</Button>
+        <Button onClick={() => setIsUpdatingLevel(true)}>Update Level</Button>
+        <Button onClick={() => setIsUpdatingStatus(true)}>Update Status</Button>
       </ButtonBox>
+      {isUpdatingLevel && (
+        <Modal>
+          <UpdateLevel setIsUpdating={setIsUpdatingLevel} />
+        </Modal>
+      )}
+      {/* {isUpdatingLevel && (
+        <Modal>
+          <UpdateStatus setIsUpdating={setIsUpdatingStatus} />
+        </Modal>
+      )} */}
     </PaintCardStyle>
   )
 }

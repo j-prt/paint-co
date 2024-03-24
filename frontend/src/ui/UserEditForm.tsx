@@ -4,18 +4,17 @@ import ButtonBox from './ButtonBox'
 import Button from './Button'
 import React, { useState } from 'react'
 import { Staff } from '../types'
+import FormBase from './FormBase'
 
 interface FormProps {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const UserEditFormStyle = styled.form`
-  display: flex;
-  flex-direction: column;
+const UserEditFormStyle = styled(FormBase)`
   width: 16rem;
   height: 14rem;
-  justify-content: space-around;
   color: var(--color-accent-dark);
+  justify-content: space-around;
 `
 
 const FormRow = styled.div`
@@ -85,7 +84,7 @@ function UserEditForm({ setIsEditing }: FormProps) {
           <option value='admin'>Admin</option>
         </select>
       </FormRow>
-      <ButtonBox horizontal>
+      <ButtonBox $horizontal>
         <Button disabled={isSubmitting} onClick={handleCancel}>
           Cancel
         </Button>

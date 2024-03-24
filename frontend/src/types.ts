@@ -1,5 +1,7 @@
 // Types match up with the database definitions in the back end
 
+import React from 'react'
+
 export type ValidColor = 'blue' | 'grey' | 'black' | 'white' | 'purple'
 export type ValidRole = 'painter' | 'manager' | 'orderer' | 'admin'
 export type ValidStatus = 'available' | 'low' | 'out'
@@ -16,4 +18,9 @@ export interface PaintTable {
   changeAmount: number
   changedBy: number
   changedAt: Date
+}
+
+// Base type interface for UpdateLevel and UpdateStatus
+export interface UpdateProps {
+  setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>
 }
