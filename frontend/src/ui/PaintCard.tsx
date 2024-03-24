@@ -5,6 +5,7 @@ import Button from './Button'
 import { useState } from 'react'
 import Modal from './Modal'
 import UpdateLevel from './UpdateLevel'
+import UpdateStatus from './UpdateStatus'
 
 const PaintCardStyle = styled(FlexColumn)`
   padding: 1.5rem;
@@ -43,11 +44,11 @@ function PaintCard() {
           <UpdateLevel setIsUpdating={setIsUpdatingLevel} />
         </Modal>
       )}
-      {/* {isUpdatingLevel && (
+      {isUpdatingStatus && (
         <Modal>
           <UpdateStatus setIsUpdating={setIsUpdatingStatus} />
         </Modal>
-      )} */}
+      )}
     </PaintCardStyle>
   )
 }
