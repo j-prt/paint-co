@@ -5,6 +5,9 @@ import Button from './Button'
 import React, { useState } from 'react'
 import { Staff } from '../types'
 import FormBase from './FormBase'
+import FormRow from './FormRow'
+import Label from './Label'
+import Input from './Input'
 
 interface FormProps {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
@@ -15,26 +18,6 @@ const UserEditFormStyle = styled(FormBase)`
   height: 14rem;
   color: var(--color-accent-dark);
   justify-content: space-around;
-`
-
-const FormRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.4rem;
-`
-
-const Label = styled.label`
-  font-weight: 500;
-  letter-spacing: 0.5px;
-`
-
-const Input = styled.input`
-  background-color: #ddd;
-  border-radius: var(--border-radius-xs);
-  height: 1.8rem;
-  border: none;
-  width: 100%;
 `
 
 function UserEditForm({ setIsEditing }: FormProps) {

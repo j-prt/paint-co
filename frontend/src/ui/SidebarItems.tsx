@@ -14,8 +14,8 @@ const SidebarItem = styled(Link)`
 function SidebarItems() {
   return (
     <SidebarItemBox>
+      <SidebarItem to='login'>Login</SidebarItem>
       <SidebarItem to='/'>View Paint Status</SidebarItem>
-      <SidebarItem to='manage'>Update Paint Status</SidebarItem>
       <SidebarItem to='admin'>Manage Users</SidebarItem>
     </SidebarItemBox>
   )

@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { GlobalStyles } from './GlobalStyles'
 import AppLayout from './ui/AppLayout'
 import PaintStatus from './pages/PaintStatus'
-import PaintManagement from './pages/PaintManagement'
 import Admin from './pages/Admin'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
+          <Route path='login' element={<Login />} />
           <Route element={<AppLayout />}>
             <Route index element={<PaintStatus />} />
-            <Route path='manage' element={<PaintManagement />} />
             <Route path='admin' element={<Admin />} />
           </Route>
         </Routes>
