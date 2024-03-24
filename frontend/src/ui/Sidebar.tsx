@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import FlexColumn from './FlexColumn'
-import { Link } from 'react-router-dom'
+import SidebarItems from './SidebarItems'
 
 const StyledSidebar = styled(FlexColumn)`
   width: 20rem;
@@ -24,15 +24,6 @@ const Avatar = styled.div`
   background-position: center;
 `
 
-const SidebarItemBox = styled(FlexColumn)`
-  gap: 0.5rem;
-  align-items: center;
-`
-
-const SidebarItem = styled(Link)`
-  font-size: 1.5rem;
-`
-
 const Copyright = styled.p`
   font-size: 0.8rem;
   margin: auto auto 0.5rem;
@@ -43,11 +34,7 @@ function Sidebar() {
     <StyledSidebar>
       <Logo>APC</Logo>
       <Avatar />
-      <SidebarItemBox>
-        <SidebarItem to='manage'>View Paint Status</SidebarItem>
-        <SidebarItem to='/'>Update Paint Status</SidebarItem>
-        <SidebarItem to='admin'>Manage Users</SidebarItem>
-      </SidebarItemBox>
+      <SidebarItems />
       <Copyright>&copy; j-prt 2024</Copyright>
     </StyledSidebar>
   )
