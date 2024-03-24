@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import { FieldErrors, FieldValues, useForm } from 'react-hook-form'
 import Button from '../ui/Button'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import FormBase from '../ui/FormBase'
 import FormRow from '../ui/FormRow'
 import Label from '../ui/Label'
 import Input from '../ui/Input'
+import { AuthContext } from '../AuthContext'
+import Loader from '../ui/Loader'
 
 interface FormData {
   name: string
@@ -30,7 +32,7 @@ const LoginForm = styled(FormBase)`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  height: 30rem;
+  height: 25rem;
   width: 30rem;
   border: 1px solid;
   border-radius: var(--border-radius-md);
@@ -38,8 +40,11 @@ const LoginForm = styled(FormBase)`
 `
 
 function Login() {
+  const { token, role } = useContext(AuthContext)
   const { register, handleSubmit } = useForm<FormData>()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+
+  console.log(token, role)
 
   function onSubmit(data: FieldValues) {
     console.log(data)
@@ -48,6 +53,8 @@ function Login() {
   function onError(errors: FieldErrors<FieldValues>) {
     console.log(errors)
   }
+
+  if (!token) return <Loader />
 
   return (
     <FullPageContainer onSubmit={handleSubmit(onSubmit, onError)}>
