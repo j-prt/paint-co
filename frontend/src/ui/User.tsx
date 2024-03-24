@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import Button from './Button'
 import { Staff } from '../types'
+import { useState } from 'react'
+import Modal from './Modal'
 
 interface UserProps {
   user: Staff
@@ -16,15 +18,21 @@ const StyledUser = styled.div`
   border: solid 1px;
   min-width: 30rem;
   height: 3rem;
-  /* width: 100%; */
 `
 
 function User({ user }: UserProps) {
+  const [isEditing, setIsEditing] = useState<boolean>(false)
+
   return (
     <StyledUser>
       <p>Name: {user.name}</p>
       <p>Current role: {user.role}</p>
-      <Button>Edit</Button>
+      <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
+      {isEditing && (
+        <Modal setIsEditing={setIsEditing}>
+          <p>Edit form</p>
+        </Modal>
+      )}
     </StyledUser>
   )
 }
