@@ -2,6 +2,7 @@ import { Router } from 'express'
 import * as paintController from './controllers/paintController'
 import * as staffController from './controllers/staffController'
 import * as statusController from './controllers/statusController'
+import { loginUser } from './controllers/loginController'
 
 const router = Router()
 const BASE_URL = '/api/v1'
@@ -26,6 +27,9 @@ router
 // Status routes
 router.get(`${BASE_URL}/status`, statusController.getAllStatus)
 router.patch(`${BASE_URL}/status/:color`, statusController.updateStatus)
+
+// Login
+router.post(`${BASE_URL}/login`, loginUser)
 
 // Null route
 router.all('*', (_, res) => res.status(404).send('Invalid route.'))

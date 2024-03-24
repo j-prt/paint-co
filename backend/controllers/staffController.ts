@@ -23,6 +23,15 @@ export async function getOneStaffDb(id: number) {
     .executeTakeFirst()
 }
 
+export async function getOneStaffByName(name: string) {
+  console.log(name)
+  return await db
+    .selectFrom('staff')
+    .where('name', '=', name)
+    .selectAll()
+    .executeTakeFirst()
+}
+
 export async function updateStaffDb(id: number, staff: StaffUpdate) {
   // Prevent changing ID
   const updateData = { ...staff, id }
