@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import FlexColumn from './FlexColumn'
+import ButtonBox from './ButtonBox'
+import Button from './Button'
 
 const PaintCardStyle = styled(FlexColumn)`
   padding: 1.5rem;
@@ -15,15 +17,6 @@ const PaintMeter = styled.div`
   height: 16rem;
   border: solid 1px;
   background-image: linear-gradient(#fff, #fff 50%, red 50%, red);
-`
-
-const ButtonBox = styled(FlexColumn)`
-  gap: 0.5rem;
-`
-
-const Button = styled.button`
-  width: 8rem;
-  height: 2rem;
 `
 
 function PaintCard() {

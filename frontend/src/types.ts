@@ -5,6 +5,7 @@ export type ValidRole = 'painter' | 'manager' | 'orderer' | 'admin'
 export type ValidStatus = 'available' | 'low' | 'out'
 
 export interface Staff {
+  id: number
   name: string
   password: string
   role: ValidRole

@@ -4,7 +4,7 @@ import SidebarItems from './SidebarItems'
 
 const StyledSidebar = styled(FlexColumn)`
   width: 20rem;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--color-main);
 `
 
