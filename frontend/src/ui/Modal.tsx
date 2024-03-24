@@ -1,10 +1,8 @@
 import { createPortal } from 'react-dom'
 import styled from 'styled-components'
-import Button from './Button'
 import React from 'react'
 
 interface ModalProps {
-  setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
   children: React.ReactNode
 }
 
@@ -12,6 +10,7 @@ const ModalStyle = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  padding: 1.5rem;
   transform: translate(-50%, -50%);
   background-color: #333;
   transition: all 0.3s;
@@ -28,13 +27,10 @@ const PageBlur = styled.div`
   transition: all 0.3s;
 `
 
-function Modal({ setIsEditing, children }: ModalProps) {
+function Modal({ children }: ModalProps) {
   return createPortal(
     <PageBlur>
-      <ModalStyle>
-        {children}
-        <Button onClick={() => setIsEditing(false)}>Close</Button>
-      </ModalStyle>
+      <ModalStyle>{children}</ModalStyle>
     </PageBlur>,
     document.body
   )
