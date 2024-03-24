@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import FlexColumn from './FlexColumn'
 
 const PaintCardStyle = styled(FlexColumn)`
-  padding: 1rem;
+  padding: 1.5rem;
   gap: 0.5rem;
   align-items: center;
   width: 12rem;
@@ -22,7 +22,6 @@ const ButtonBox = styled(FlexColumn)`
 `
 
 const Button = styled.button`
-  margin-top: 1rem;
   width: 8rem;
   height: 2rem;
 `
