@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import PaintCard from '../ui/PaintCard'
 
 const Header = styled.h1`
   margin: 0 auto 3rem;
-  font-size: 6rem;
+  font-size: 4rem;
 `
 
 const Main = styled.main`
@@ -11,18 +12,16 @@ const Main = styled.main`
   gap: 2rem;
 `
 
-const PaintCard = styled.div``
-
 function PaintStatus() {
   return (
     <>
       <Header>Paint Status</Header>
       <Main>
-        <PaintCard>card</PaintCard>
-        <PaintCard>card</PaintCard>
-        <PaintCard>card</PaintCard>
-        <PaintCard>card</PaintCard>
-        <PaintCard>card</PaintCard>
+        <PaintCard />
+        <PaintCard />
+        <PaintCard />
+        <PaintCard />
+        <PaintCard />
       </Main>
     </>
   )
