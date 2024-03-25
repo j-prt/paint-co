@@ -20,6 +20,11 @@ export interface PaintTable {
   changedAt: Date
 }
 
+export interface PaintLevel {
+  total: string
+  color: string
+}
+
 // Base type interface for UpdateLevel and UpdateStatus
 export interface UpdateProps {
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>

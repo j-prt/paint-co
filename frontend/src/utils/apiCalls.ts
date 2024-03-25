@@ -8,11 +8,20 @@ export async function login(data) {
     return { response }
   } catch (err) {
     console.log(err)
-    return { error: 'Error' }
+    return { error: 'Login Error' }
   }
 }
 
-export async function getPaintLevels() {}
+export async function getPaintLevels() {
+  try {
+    const response = await axios.get(`${API_URL}/paints`)
+    console.log(response)
+    return { response }
+  } catch (err) {
+    console.log(err)
+    return { error: 'Paint Fetch Error' }
+  }
+}
 
 export async function changePaintLevel() {}
 
