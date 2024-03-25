@@ -26,7 +26,7 @@ const StyledSidebar = styled(FlexColumn)`
   }
 `
 
-const Logo = styled.p`
+const Logo = styled.h1`
   margin: 3rem auto 0rem;
 
   font-size: 3rem;

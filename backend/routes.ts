@@ -32,5 +32,5 @@ router.patch(`${BASE_URL}/status/:color`, statusController.updateStatus)
 router.post(`${BASE_URL}/login`, loginUser)
 
 // Null route
-router.all('*', (_, res) => res.status(404).send('Invalid route.'))
+router.all(`${BASE_URL}/*`, (_, res) => res.status(404).send('Invalid route.'))
 export default router

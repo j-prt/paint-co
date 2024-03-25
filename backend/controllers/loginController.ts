@@ -24,10 +24,10 @@ export async function loginUser(req: Request, res: Response) {
   }
 
   // No error, result found
-  const { password, role } = result as Staff
+  const { password, role, id } = result as Staff
 
   if (pass === password) {
-    res.status(200).json(jwt.sign({ role }, SECRET))
+    res.status(200).json(jwt.sign({ role, id }, SECRET))
   } else {
     res.status(401).json('Unauthorized')
   }

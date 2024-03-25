@@ -17,6 +17,14 @@ export const GlobalStyles = createGlobalStyle`
 --border-radius-xs: 2px;
 }
 
+h1 {
+  font-family: "Oleo Script Swash Caps", system-ui;
+}
+
+* {
+font-family: "Inter", sans-serif;
+}
+
 *,
 *::before,
 *::after {

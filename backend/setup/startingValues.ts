@@ -1,8 +1,8 @@
 export const PAINTS = [
-  { color: 'blue', changeAmount: 200, changedBy: 0, changedAt: new Date() },
-  { color: 'grey', changeAmount: 200, changedBy: 0, changedAt: new Date() },
-  { color: 'black', changeAmount: 200, changedBy: 0, changedAt: new Date() },
-  { color: 'white', changeAmount: 200, changedBy: 0, changedAt: new Date() },
+  { color: 'blue', changeAmount: 150, changedBy: 0, changedAt: new Date() },
+  { color: 'grey', changeAmount: 5, changedBy: 0, changedAt: new Date() },
+  { color: 'black', changeAmount: 170, changedBy: 0, changedAt: new Date() },
+  { color: 'white', changeAmount: 100, changedBy: 0, changedAt: new Date() },
   {
     color: 'purple',
     changeAmount: 200,
