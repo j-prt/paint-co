@@ -16,8 +16,13 @@ export async function getSumByColorDb(color: ValidColor) {
 export async function getAllPaintSumsDb() {
   return await db
     .selectFrom('paintUse')
-    .groupBy('color')
-    .select([sql`sum("changeAmount")`.as('total'), 'color'])
+    .innerJoin('status', 'paintUse.color', 'status.color')
+    .groupBy('paintUse.color')
+    .select([
+      sql`sum("changeAmount")`.as('total'),
+      'paintUse.color',
+      sql`max(status.status)`.as('status'),
+    ])
     .execute()
 }
 
