@@ -73,7 +73,12 @@ function UserEditForm({ user, setIsEditing }: FormProps) {
       </FormRow>
       <FormRow>
         <Label>Role</Label>
-        <select id='role' disabled={isSubmitting} {...register('role')}>
+        <select
+          id='role'
+          disabled={isSubmitting}
+          defaultValue={user.role}
+          {...register('role')}
+        >
           <option value='painter'>Painter</option>
           <option value='orderer'>Orderer</option>
           <option value='manager'>Manager</option>

@@ -40,6 +40,7 @@ export function AuthProvider({ children }: ProviderProps) {
   function logout() {
     setToken('')
     setIsAuth(false)
+    setRole('')
     localStorage.removeItem('jwt')
   }
 

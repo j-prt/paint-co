@@ -2,20 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyles = createGlobalStyle`
 :root {
---color-main: #1E5128;
---color-main-med: #123118;
---color-main-med-rgb: 18, 49, 24;
---color-main-dark: #09180c;
---color-main-dark-rgb: 9, 24, 12;
+--color-main: #FFB6C1;
 
---color-secondary: #281E51;
---color-secondary-rgb: 40, 30, 81;
+--color-secondary: #B6C1FF;
 
---color-accent: #D8E9A8;
+--color-accent: #C1FFB6;
 --color-accent-rgb: 216, 233, 168;
-
---color-link: #69aae6;
-
 
 // Paddings, margins, predefined widths
 --border-radius-md: 8px;

@@ -1,27 +1,55 @@
 import styled from 'styled-components'
 import FlexColumn from './FlexColumn'
 import SidebarItems from './SidebarItems'
+import { device } from '../media'
 
 const StyledSidebar = styled(FlexColumn)`
-  width: 20rem;
-  min-height: 100vh;
+  width: 8rem;
+  height: 100vh;
   background-color: var(--color-main);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  display: none;
+
+  @media ${device.xs} {
+    width: 8rem;
+    display: flex;
+  }
+
+  @media ${device.sm} {
+    width: 14rem;
+    display: flex;
+  }
+
+  @media ${device.lg} {
+    width: 20rem;
+  }
 `
 
 const Logo = styled.p`
   margin: 3rem auto 0rem;
 
-  font-size: 5rem;
+  font-size: 3rem;
+
+  @media ${device.sm} {
+    font-size: 5rem;
+  }
 `
 
 const Avatar = styled.div`
   margin: 1rem auto;
-  width: 8rem;
-  height: 8rem;
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   background-image: url('/paintbrush.jpg');
   background-size: cover;
   background-position: center;
+
+  @media ${device.sm} {
+    width: 8rem;
+    height: 8rem;
+  }
 `
 
 const Copyright = styled.p`

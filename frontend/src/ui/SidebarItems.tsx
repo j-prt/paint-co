@@ -3,17 +3,20 @@ import FlexColumn from './FlexColumn'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../AuthContext'
+import { device } from '../media'
 
 const SidebarItemBox = styled(FlexColumn)`
   margin-top: 2rem;
   gap: 3rem;
   align-items: center;
+  font-size: 1rem;
+
+  @media ${device.sm} {
+    font-size: 1.5rem;
+  }
 `
-const SidebarItem = styled(Link)`
-  font-size: 1.5rem;
-`
+const SidebarItem = styled(Link)``
 const Logout = styled.p`
-  font-size: 1.5rem;
   &:hover {
     cursor: pointer;
   }

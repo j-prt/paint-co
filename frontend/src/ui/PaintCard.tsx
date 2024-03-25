@@ -7,7 +7,6 @@ import Modal from './Modal'
 import UpdateLevel from './UpdateLevel'
 import UpdateStatus from './UpdateStatus'
 import { AuthContext } from '../AuthContext'
-import { Navigate } from 'react-router'
 import { PaintLevel } from '../types'
 
 interface PaintMeterProps {
@@ -16,10 +15,11 @@ interface PaintMeterProps {
 }
 
 const PaintCardStyle = styled(FlexColumn)`
+  align-self: center;
   padding: 1.5rem;
   gap: 0.5rem;
   align-items: center;
-  width: 12rem;
+  width: 10rem;
   height: 30rem;
   background-color: #eee;
 `
@@ -59,13 +59,12 @@ function levelAsPercent(level: string) {
 }
 
 function PaintCard({ paintData }: PaintCardProps) {
-  const { isAuth, role, id: userId } = useContext(AuthContext)
+  const { role, id: userId } = useContext(AuthContext)
   const [isUpdatingLevel, setIsUpdatingLevel] = useState<boolean>(false)
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false)
 
   const percentage = levelAsPercent(paintData.total)
 
-  if (!isAuth) return <Navigate to='/login' />
   return (
     <PaintCardStyle>
       <Title>{paintData.color}</Title>

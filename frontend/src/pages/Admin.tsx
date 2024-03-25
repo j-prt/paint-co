@@ -5,6 +5,9 @@ import FlexColumn from '../ui/FlexColumn'
 import { Staff } from '../types'
 import { useUsers } from '../hooks/useUsers'
 import Loader from '../ui/Loader'
+import { useContext } from 'react'
+import { AuthContext } from '../AuthContext'
+import { Navigate } from 'react-router'
 
 const Content = styled(FlexColumn)`
   margin: 0 auto;
@@ -13,12 +16,16 @@ const Content = styled(FlexColumn)`
 `
 
 function Admin() {
+  const { role, isAuth } = useContext(AuthContext)
   const { data, isLoading, isError } = useUsers()
   console.log(data, isLoading, isError)
 
   if (isLoading) return <Loader />
 
   if (!isLoading && isError) return
+
+  if (!isAuth) return <Navigate to='/login' />
+  if (role !== 'admin') return <Navigate to='/' />
 
   return (
     <>
