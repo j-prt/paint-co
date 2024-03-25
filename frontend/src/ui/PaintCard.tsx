@@ -41,8 +41,14 @@ function PaintCard() {
         Available
       </p>
       <ButtonBox>
-        <Button onClick={() => setIsUpdatingLevel(true)}>Update Level</Button>
-        <Button onClick={() => setIsUpdatingStatus(true)}>Update Status</Button>
+        {(role === 'orderer' || role === 'painter') && (
+          <Button onClick={() => setIsUpdatingLevel(true)}>Update Level</Button>
+        )}
+        {(role === 'orderer' || role === 'manager') && (
+          <Button onClick={() => setIsUpdatingStatus(true)}>
+            Update Status
+          </Button>
+        )}
       </ButtonBox>
       {isUpdatingLevel && (
         <Modal>
