@@ -8,9 +8,11 @@ import FormBase from './FormBase'
 import FormRow from './FormRow'
 import Label from './Label'
 import Input from './Input'
+import { changeUserDetails } from '../utils/apiCalls'
 
 interface FormProps {
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>
+  user: Staff
 }
 
 const UserEditFormStyle = styled(FormBase)`
@@ -20,19 +22,28 @@ const UserEditFormStyle = styled(FormBase)`
   justify-content: space-around;
 `
 
-function UserEditForm({ setIsEditing }: FormProps) {
+function UserEditForm({ user, setIsEditing }: FormProps) {
   const { register, handleSubmit } = useForm<Partial<Staff>>()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isError, setIsError] = useState<boolean>(false)
 
   function handleCancel(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     setIsEditing(false)
   }
 
-  function onSubmit(data: FieldValues) {
-    // await updateUser(data)
-    console.log(data)
-    // setIsSubmitting(true)
+  async function onSubmit(data: FieldValues) {
+    let newData = Object.fromEntries(
+      Object.entries(data).filter(el => !!el.at(1))
+    )
+    newData = { ...newData, id: user.id }
+    console.log(newData)
+    setIsSubmitting(true)
+    const { response, error } = await changeUserDetails(newData)
+    setIsSubmitting(false)
+    // Hack - Using react query would be preferred
+    if (response) window.location.reload()
+    if (error) setIsError(true)
   }
 
   function onError(errors: FieldErrors<FieldValues>) {
@@ -40,11 +51,13 @@ function UserEditForm({ setIsEditing }: FormProps) {
   }
   return (
     <UserEditFormStyle onSubmit={handleSubmit(onSubmit, onError)}>
+      {isError && <p>Error. Try again later</p>}
       <FormRow>
         <Label>Name</Label>
         <Input
           type='text'
           id='name'
+          defaultValue={user.name}
           disabled={isSubmitting}
           {...register('name')}
         />

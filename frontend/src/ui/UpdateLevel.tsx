@@ -51,7 +51,6 @@ function UpdateLevel({ color, id, setIsUpdating }: UpdateLevelProps) {
     // example: {add_or_reduce: 'reduce', amount: 4}
     const changeAmount =
       data.add_or_reduce === 'add' ? +data.amount : -data.amount
-    console.log(data)
     setIsSubmitting(true)
     const { response, error } = await changePaintLevel({
       color,

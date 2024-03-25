@@ -31,7 +31,7 @@ function User({ user }: UserProps) {
       <Button onClick={() => setIsEditing(!isEditing)}>Edit</Button>
       {isEditing && (
         <Modal>
-          <UserEditForm setIsEditing={setIsEditing} />
+          <UserEditForm user={user} setIsEditing={setIsEditing} />
         </Modal>
       )}
     </StyledUser>

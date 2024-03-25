@@ -44,7 +44,6 @@ export async function changePaintStatus(color: string, status: string) {
     return { error: 'Paint Change Error' }
   }
 }
-export async function changeUserDetails() {}
 
 export async function getAllUsers() {
   try {
@@ -54,5 +53,17 @@ export async function getAllUsers() {
   } catch (err) {
     console.log(err)
     return { error: 'Staff Fetch Error' }
+  }
+}
+
+export async function changeUserDetails(data) {
+  const { id, ...update } = data
+  try {
+    const response = await axios.patch(`${API_URL}/staff/${id}`, update)
+    console.log(response)
+    return { response }
+  } catch (err) {
+    console.log(err)
+    return { error: 'User Change Error' }
   }
 }
