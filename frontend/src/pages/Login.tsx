@@ -7,7 +7,8 @@ import FormRow from '../ui/FormRow'
 import Label from '../ui/Label'
 import Input from '../ui/Input'
 import { AuthContext } from '../AuthContext'
-import Loader from '../ui/Loader'
+import { login } from '../utils/apiCalls'
+import { Navigate, useNavigate } from 'react-router'
 
 interface FormData {
   name: string
@@ -40,27 +41,37 @@ const LoginForm = styled(FormBase)`
 `
 
 function Login() {
-  const { token, role } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const { token, setToken } = useContext(AuthContext)
   const { register, handleSubmit } = useForm<FormData>()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isError, setIsError] = useState<boolean>(false)
 
-  console.log(token, role)
-
-  function onSubmit(data: FieldValues) {
-    console.log(data)
+  async function onSubmit(data: FieldValues) {
+    setIsSubmitting(true)
+    const { response, error } = await login(data)
+    if (error) {
+      setIsError(true)
+      setIsSubmitting(false)
+    }
+    if (response) {
+      setToken(response.data)
+      localStorage.setItem('jwt', response.data)
+      navigate('/')
+    }
   }
 
   function onError(errors: FieldErrors<FieldValues>) {
     console.log(errors)
   }
 
-  if (!token) return <Loader />
+  if (token) return <Navigate to='/' />
 
   return (
     <FullPageContainer onSubmit={handleSubmit(onSubmit, onError)}>
       <LoginForm>
         <h1>Login</h1>
-
+        {isError && <p>Wrong credentials. Try again.</p>}
         <FormRow>
           <Label>Name</Label>
           <Input
