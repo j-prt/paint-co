@@ -3,8 +3,10 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyles = createGlobalStyle`
 :root {
 --color-main: #FFB6C1;
+--color-main-light: #ffe2e6;
 
 --color-secondary: #B6C1FF;
+--color-secondary-light: #e2e6ff;
 
 --color-accent: #C1FFB6;
 --color-accent-rgb: 216, 233, 168;

@@ -21,7 +21,9 @@ const PaintCardStyle = styled(FlexColumn)`
   align-items: center;
   width: 10rem;
   height: 30rem;
-  background-color: #eee;
+  background-color: var(--color-main-light);
+  box-shadow: 0rem 0rem 0.5rem #888;
+  border-radius: var(--border-radius-md);
 `
 
 const PaintMeter = styled.div<PaintMeterProps>`

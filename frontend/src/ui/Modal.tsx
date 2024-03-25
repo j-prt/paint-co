@@ -12,7 +12,9 @@ const ModalStyle = styled.div`
   left: 50%;
   padding: 1.5rem;
   transform: translate(-50%, -50%);
-  background-color: #333;
+  background-color: var(--color-secondary-light);
+  box-shadow: 0rem 0rem 0.5rem #888;
+  border-radius: var(--border-radius-md);
   transition: all 0.3s;
 `
 

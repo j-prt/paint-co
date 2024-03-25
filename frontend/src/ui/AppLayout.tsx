@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import FlexRow from './FlexRow'
+import Header from './Header'
 
 const OutletBox = styled.div`
   display: flex;
@@ -13,12 +14,15 @@ const OutletBox = styled.div`
 
 function AppLayout() {
   return (
-    <FlexRow>
-      <Sidebar />
-      <OutletBox>
-        <Outlet />
-      </OutletBox>
-    </FlexRow>
+    <>
+      <Header />
+      <FlexRow>
+        <Sidebar />
+        <OutletBox>
+          <Outlet />
+        </OutletBox>
+      </FlexRow>
+    </>
   )
 }
 

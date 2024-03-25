@@ -7,7 +7,6 @@ const StyledSidebar = styled(FlexColumn)`
   width: 8rem;
   height: 100vh;
   background-color: var(--color-main);
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   display: none;
