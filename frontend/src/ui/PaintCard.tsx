@@ -12,6 +12,7 @@ import { PaintLevel } from '../types'
 
 interface PaintMeterProps {
   $color: string
+  $percentage: number
 }
 
 const PaintCardStyle = styled(FlexColumn)`
@@ -20,7 +21,7 @@ const PaintCardStyle = styled(FlexColumn)`
   align-items: center;
   width: 12rem;
   height: 30rem;
-  background-color: #fff;
+  background-color: #eee;
 `
 
 const PaintMeter = styled.div<PaintMeterProps>`
@@ -31,8 +32,8 @@ const PaintMeter = styled.div<PaintMeterProps>`
   ${props => css`
     background-image: linear-gradient(
       #eee,
-      #eee 50%,
-      ${props.$color} 50%,
+      #eee ${props.$percentage}%,
+      ${props.$color} ${props.$percentage}%,
       ${props.$color}
     );
   `}
@@ -46,20 +47,31 @@ interface PaintCardProps {
   paintData: PaintLevel
 }
 
+// We assume 200 is the maximum value for paints here
+// but we could use any arbitrary value
+function levelAsPercent(level: string) {
+  console.log(level)
+  console.log(parseFloat(level) / 200)
+  return 1 - (1.0 * parseFloat(level)) / 200.0
+}
+
 function PaintCard({ paintData }: PaintCardProps) {
   const { isAuth, role } = useContext(AuthContext)
   const [isUpdatingLevel, setIsUpdatingLevel] = useState<boolean>(false)
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false)
 
+  const percentage = levelAsPercent(paintData.total)
+  console.log(percentage)
+
   if (!isAuth) return <Navigate to='/login' />
   return (
     <PaintCardStyle>
       <Title>{paintData.color}</Title>
-      <PaintMeter $color={paintData.color} />
+      <PaintMeter $color={paintData.color} $percentage={percentage} />
       <p>
         Level: {paintData.total}
         <br />
-        Available
+        <Title>{paintData.status}</Title>
       </p>
       <ButtonBox>
         {(role === 'orderer' || role === 'painter') && (

@@ -23,6 +23,7 @@ export interface PaintTable {
 export interface PaintLevel {
   total: string
   color: string
+  status: string
 }
 
 // Base type interface for UpdateLevel and UpdateStatus
