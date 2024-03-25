@@ -64,7 +64,6 @@ function PaintCard({ paintData }: PaintCardProps) {
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false)
 
   const percentage = levelAsPercent(paintData.total)
-  console.log(percentage)
 
   if (!isAuth) return <Navigate to='/login' />
   return (

@@ -3,57 +3,8 @@ import Heading from '../ui/Heading'
 import User from '../ui/User'
 import FlexColumn from '../ui/FlexColumn'
 import { Staff } from '../types'
-
-const users: Staff[] = [
-  {
-    id: 1,
-    name: 'Donatello',
-    password: 'donatello',
-    role: 'painter',
-  },
-  {
-    id: 2,
-    name: 'Raphael',
-    password: 'raphael',
-    role: 'painter',
-  },
-  {
-    id: 3,
-    name: 'Adam',
-    password: 'adam',
-    role: 'admin',
-  },
-  {
-    id: 4,
-    name: 'John',
-    password: 'john',
-    role: 'manager',
-  },
-  {
-    id: 5,
-    name: 'Jane',
-    password: 'jane',
-    role: 'orderer',
-  },
-  {
-    id: 6,
-    name: 'Michelangelo',
-    password: 'michelangelo',
-    role: 'painter',
-  },
-  {
-    id: 16,
-    name: 'matty',
-    password: 'matisse',
-    role: 'orderer',
-  },
-  {
-    id: 7,
-    name: 'matty',
-    password: 'matisse',
-    role: 'orderer',
-  },
-]
+import { useUsers } from '../hooks/useUsers'
+import Loader from '../ui/Loader'
 
 const Content = styled(FlexColumn)`
   margin: 0 auto;
@@ -62,11 +13,18 @@ const Content = styled(FlexColumn)`
 `
 
 function Admin() {
+  const { data, isLoading, isError } = useUsers()
+  console.log(data, isLoading, isError)
+
+  if (isLoading) return <Loader />
+
+  if (!isLoading && isError) return
+
   return (
     <>
       <Heading>Manage Users</Heading>
       <Content>
-        {users.map(el => (
+        {(data as Staff[]).map(el => (
           <User user={el} key={el.id} />
         ))}
       </Content>

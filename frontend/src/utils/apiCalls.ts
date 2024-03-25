@@ -46,4 +46,13 @@ export async function changePaintStatus(color: string, status: string) {
 }
 export async function changeUserDetails() {}
 
-export async function getALlUsers() {}
+export async function getAllUsers() {
+  try {
+    const response = await axios.get(`${API_URL}/staff`)
+    console.log(response)
+    return { response }
+  } catch (err) {
+    console.log(err)
+    return { error: 'Staff Fetch Error' }
+  }
+}

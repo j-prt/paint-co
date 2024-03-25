@@ -3,6 +3,7 @@ import styled from 'styled-components'
 // https://css-loaders.com/spinner/ #3
 
 const Loader = styled.div`
+  margin: auto;
   width: 50px;
   padding: 8px;
   aspect-ratio: 1;

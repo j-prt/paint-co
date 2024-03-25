@@ -16,8 +16,8 @@ const Logo = styled.p`
 
 const Avatar = styled.div`
   margin: 1rem auto;
-  width: 6rem;
-  height: 6rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   background-image: url('/paintbrush.jpg');
   background-size: cover;
