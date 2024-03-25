@@ -34,7 +34,7 @@ function UserEditForm({ user, setIsEditing }: FormProps) {
 
   async function onSubmit(data: FieldValues) {
     let newData = Object.fromEntries(
-      Object.entries(data).filter(el => !!(el as Array<unknown>).at(1))
+      Object.entries(data).filter(el => !!(el as Array<unknown>)[1])
     )
     newData = { ...newData, id: user.id }
     setIsSubmitting(true)
