@@ -34,10 +34,9 @@ function UserEditForm({ user, setIsEditing }: FormProps) {
 
   async function onSubmit(data: FieldValues) {
     let newData = Object.fromEntries(
-      Object.entries(data).filter(el => !!el.at(1))
+      Object.entries(data).filter(el => !!(el as Array<unknown>).at(1))
     )
     newData = { ...newData, id: user.id }
-    console.log(newData)
     setIsSubmitting(true)
     const { response, error } = await changeUserDetails(newData)
     setIsSubmitting(false)
