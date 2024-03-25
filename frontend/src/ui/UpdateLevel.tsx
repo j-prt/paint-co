@@ -13,7 +13,6 @@ interface FieldTypes {
 }
 
 interface UpdateLevelProps extends UpdateProps {
-  color: string
   id: string
 }
 
@@ -54,12 +53,14 @@ function UpdateLevel({ color, id, setIsUpdating }: UpdateLevelProps) {
       data.add_or_reduce === 'add' ? +data.amount : -data.amount
     console.log(data)
     setIsSubmitting(true)
-    const { error } = await changePaintLevel({
+    const { response, error } = await changePaintLevel({
       color,
       changeAmount,
       changedBy: Number(id),
     })
     setIsSubmitting(false)
+    // Hack - Using react query would be preferred
+    if (response) window.location.reload()
     if (error) setIsError(true)
   }
 

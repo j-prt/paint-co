@@ -77,10 +77,10 @@ function PaintCard({ paintData }: PaintCardProps) {
         <Title>{paintData.status}</Title>
       </p>
       <ButtonBox>
-        {(role === 'orderer' || role === 'painter') && (
+        {(role === 'orderer' || role === 'painter' || role === 'admin') && (
           <Button onClick={() => setIsUpdatingLevel(true)}>Update Level</Button>
         )}
-        {(role === 'orderer' || role === 'manager') && (
+        {(role === 'orderer' || role === 'manager' || role === 'admin') && (
           <Button onClick={() => setIsUpdatingStatus(true)}>
             Update Status
           </Button>
@@ -97,7 +97,10 @@ function PaintCard({ paintData }: PaintCardProps) {
       )}
       {isUpdatingStatus && (
         <Modal>
-          <UpdateStatus setIsUpdating={setIsUpdatingStatus} />
+          <UpdateStatus
+            color={paintData.color}
+            setIsUpdating={setIsUpdatingStatus}
+          />
         </Modal>
       )}
     </PaintCardStyle>

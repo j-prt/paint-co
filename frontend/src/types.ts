@@ -29,4 +29,5 @@ export interface PaintLevel {
 // Base type interface for UpdateLevel and UpdateStatus
 export interface UpdateProps {
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>
+  color: string
 }

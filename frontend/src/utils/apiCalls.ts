@@ -34,6 +34,16 @@ export async function changePaintLevel(data) {
   }
 }
 
+export async function changePaintStatus(color: string, status: string) {
+  try {
+    const response = await axios.patch(`${API_URL}/status/${color}`, { status })
+    console.log(response)
+    return { response }
+  } catch (err) {
+    console.log(err)
+    return { error: 'Paint Change Error' }
+  }
+}
 export async function changeUserDetails() {}
 
 export async function getALlUsers() {}
