@@ -5,10 +5,16 @@ import ButtonBox from './ButtonBox'
 import Button from './Button'
 import { useState } from 'react'
 import FormBase from './FormBase'
+import { changePaintLevel } from '../utils/apiCalls'
 
 interface FieldTypes {
   add_or_reduce: 'add' | 'reduce'
   amount: number
+}
+
+interface UpdateLevelProps extends UpdateProps {
+  color: string
+  id: string
 }
 
 const StyledUpdateLevel = styled(FormBase)`
@@ -32,18 +38,29 @@ const NumInput = styled.input`
   text-align: center;
 `
 
-function UpdateLevel({ setIsUpdating }: UpdateProps) {
+function UpdateLevel({ color, id, setIsUpdating }: UpdateLevelProps) {
   const { register, handleSubmit } = useForm<FieldTypes>()
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const [isError, setIsError] = useState<boolean>(false)
 
   function handleCancel(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault()
     setIsUpdating(false)
   }
 
-  function onSubmit(data: FieldValues) {
+  async function onSubmit(data: FieldValues) {
+    // example: {add_or_reduce: 'reduce', amount: 4}
+    const changeAmount =
+      data.add_or_reduce === 'add' ? +data.amount : -data.amount
     console.log(data)
-    // setIsSubmitting(true)
+    setIsSubmitting(true)
+    const { error } = await changePaintLevel({
+      color,
+      changeAmount,
+      changedBy: Number(id),
+    })
+    setIsSubmitting(false)
+    if (error) setIsError(true)
   }
 
   function onError(errors: FieldErrors<FieldValues>) {
@@ -52,6 +69,7 @@ function UpdateLevel({ setIsUpdating }: UpdateProps) {
 
   return (
     <StyledUpdateLevel onSubmit={handleSubmit(onSubmit, onError)}>
+      {isError && <p>Error. Try again later</p>}
       <p>Change Paint Level</p>
       <Row>
         <Row>

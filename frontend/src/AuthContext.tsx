@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode'
 
 interface Token {
   role: string
+  id: string
 }
 
 interface ProviderProps {
@@ -12,6 +13,7 @@ interface ProviderProps {
 interface ContextProps {
   token: string | null
   role: string
+  id: string
   isAuth: boolean
   setRole: React.Dispatch<React.SetStateAction<string>>
   setToken: React.Dispatch<React.SetStateAction<string | null>>
@@ -24,11 +26,13 @@ export function AuthProvider({ children }: ProviderProps) {
   const [token, setToken] = useState<string | null>(localStorage.getItem('jwt'))
   const [isAuth, setIsAuth] = useState<boolean>(false)
   const [role, setRole] = useState('')
+  const [id, setId] = useState('')
 
   useEffect(() => {
     if (token) {
       const tokenValues = jwtDecode(token) as Token
       setRole(tokenValues.role)
+      setId(tokenValues.id)
       setIsAuth(true)
     }
   }, [token])
@@ -41,7 +45,7 @@ export function AuthProvider({ children }: ProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ token, role, setRole, setToken, isAuth, logout }}
+      value={{ token, role, setRole, setToken, isAuth, logout, id }}
     >
       {children}
     </AuthContext.Provider>

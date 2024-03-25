@@ -50,13 +50,16 @@ interface PaintCardProps {
 // We assume 200 is the maximum value for paints here
 // but we could use any arbitrary value
 function levelAsPercent(level: string) {
-  console.log(level)
-  console.log(parseFloat(level) / 200)
-  return 1 - (1.0 * parseFloat(level)) / 200.0
+  let numLevel = parseFloat(level)
+  if (numLevel < 0) {
+    numLevel = 0
+  }
+
+  return (1 - (1.0 * numLevel) / 200.0) * 100
 }
 
 function PaintCard({ paintData }: PaintCardProps) {
-  const { isAuth, role } = useContext(AuthContext)
+  const { isAuth, role, id: userId } = useContext(AuthContext)
   const [isUpdatingLevel, setIsUpdatingLevel] = useState<boolean>(false)
   const [isUpdatingStatus, setIsUpdatingStatus] = useState<boolean>(false)
 
@@ -85,7 +88,11 @@ function PaintCard({ paintData }: PaintCardProps) {
       </ButtonBox>
       {isUpdatingLevel && (
         <Modal>
-          <UpdateLevel setIsUpdating={setIsUpdatingLevel} />
+          <UpdateLevel
+            color={paintData.color}
+            setIsUpdating={setIsUpdatingLevel}
+            id={userId}
+          />
         </Modal>
       )}
       {isUpdatingStatus && (

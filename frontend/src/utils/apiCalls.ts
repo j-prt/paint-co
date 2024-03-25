@@ -23,7 +23,16 @@ export async function getPaintLevels() {
   }
 }
 
-export async function changePaintLevel() {}
+export async function changePaintLevel(data) {
+  try {
+    const response = await axios.post(`${API_URL}/paints`, data)
+    console.log(response)
+    return { response }
+  } catch (err) {
+    console.log(err)
+    return { error: 'Paint Change Error' }
+  }
+}
 
 export async function changeUserDetails() {}
 
