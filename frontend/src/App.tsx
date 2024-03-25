@@ -4,11 +4,10 @@ import AppLayout from './ui/AppLayout'
 import PaintStatus from './pages/PaintStatus'
 import Admin from './pages/Admin'
 import Login from './pages/Login'
-import { AuthProvider } from './AuthContext'
 
 function App() {
   return (
-    <AuthProvider>
+    <>
       <GlobalStyles />
       <BrowserRouter>
         <Routes>
@@ -19,7 +18,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </AuthProvider>
+    </>
   )
 }
 
